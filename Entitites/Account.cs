@@ -13,30 +13,36 @@ namespace Exercicio_excecoes.Entitites
         {
 
         }
-        public Account(int number, string holder,double balance,double withdrawlimit)
+
+        public Account(int number, string holder, double balance, double withdrawLimit)
         {
             Number = number;
             Holder = holder;
             Balance = balance;
-            WithdrawLimit = withdrawlimit;
+            WithdrawLimit = withdrawLimit;
         }
 
         public void Deposit(double valor)
         {
             Balance += valor;
         }
-        public void Withdraw(double valor)
+        public void Withdraw(double quantia)
         {
-            if(Balance == 0)
+            if (quantia > WithdrawLimit)
+            {
+                throw new DomainException("The ammount exceeds withdraw limit.");
+
+            }
+            if (quantia > Balance)
             {
 
                 throw new DomainException("Not enough balance.");
+
             }
-            if(valor > WithdrawLimit)
-            {
-                throw new DomainException("The ammount exceeds withdraw limit.");
-            }
-            Balance -= valor;
+            
+
+            Balance -= quantia;
+
         }
     }
 }
