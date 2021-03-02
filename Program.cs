@@ -6,7 +6,15 @@ namespace Exercicio_excecoes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                Console.WriteLine("Hello World!");
+                int a = int.Parse(Console.ReadLine());
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a.Message);
+            }
         }
     }
 }
